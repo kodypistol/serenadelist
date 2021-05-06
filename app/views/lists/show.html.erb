@@ -1,0 +1,23 @@
+
+<p>
+  <strong>User:</strong>
+  <%= @list.user_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @list.content %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @list.date %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @list.completed %>
+</p>
+
+<%= link_to 'Edit', edit_list_path(@list) %> |
+<%= link_to 'Back', lists_path %>

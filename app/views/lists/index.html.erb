@@ -1,0 +1,50 @@
+
+<table class="table table_bordered">
+
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <% if list.completed %>
+
+      <tr class="table-secondary">
+        <td><%= list.user_id %></td>
+        <td class="striker"><%= link_to list.content, edit_list_path(list) %></td>
+        <td>
+        <center>
+          <%= form_for(list) do |f| %>
+          <%= f.text_field :description, type: 'hidden' %>
+          <%= f.check_box :completed, :checked => false, :style => 'visibility: hidden' %>
+          <%= submit "Uncross", class: 'btn btn-outline-secondary btn-sm' %>
+          <% end %>
+        </center>
+          </td>
+        <td><%= list.date %></td>
+        <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+
+      <% else %>
+
+      <tr>
+      <td><%= list.user_id %></td>
+      <td><%= link_to list.content, edit_list_path(list) %></td>
+      <td>
+      <center>
+          <%= form_for(list) do |f| %>
+          <%= f.text_field :description, type: 'hidden' %>
+          <%= f.check_box :completed, :checked => true, :style => 'visibility: hidden' %>
+          <%= submit "Uncross", class: 'btn btn-outline-secondary btn-sm' %>
+          <% end %>
+        </center>
+      </td>
+      <td><%= list.date %></td>
+      <td><%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New List', new_list_path %>
